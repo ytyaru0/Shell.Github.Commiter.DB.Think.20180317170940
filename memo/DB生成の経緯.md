@@ -47,3 +47,35 @@ Database().Repos[username]['Repositories'].find(Id=None, Name=None)
 Database().Users['Users'].insert({...})
 Database().Repositories['username']['tablename'].insert({...})
 ```
+
+# 問題
+
+* [SQLite3はDBファイル間の関係を定義できない](SQLite3はDBファイル間の関係を定義できない.md)
+
+# 対策
+
+定義する方法をつくりだす。
+
+ファイル名|説明
+----------|----
+sqlite.names|DBの名前、出力パス、入力パス
+sqlite.relate.contain|包含関係
+sqlite.relate.list|前後関係（ファイルサイズによりやむなくファイル分割）
+
+## sqlite.names
+
+```
+Name    OUT                                 IN
+L   res/db/Languages.db                 src/db/Languages/
+U   res/db/Users.db                     src/db/Users/
+U   res/db/Repos/{U.Users.Id}{List}.db  src/db/Languages/
+```
+
+## sqlite.relate.contain
+
+```
+Parent          Child
+U.Users.Id      R.Repositories.UserId
+L.Languages.Id  R.EditingAmounts.LanguageId
+```
+
