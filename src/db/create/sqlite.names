@@ -1,0 +1,5 @@
+Name    OUT                             IN
+L       res/db/Languages.db             src/db/Languages/
+U       res/db/Users.db                 src/db/Users/
+R       res/db/Repos/{U.Users.Id}.db    src/db/Languages/
+

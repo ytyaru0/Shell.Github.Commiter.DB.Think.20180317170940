@@ -1,0 +1,4 @@
+Parent          Child
+U.Users.Id      R.Repositories.UserId
+L.Languages.Id  R.EditingAmounts.LanguageId
+
